@@ -39,9 +39,9 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player1 = Player('outside')
+player1 = Player(room['outside'])
 
-
+game_active = True
 
 # Write a loop that:
 #
@@ -53,3 +53,47 @@ player1 = Player('outside')
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+while game_active:
+    print(player1.current_room.name)
+    print(player1.current_room.description)
+
+    user_input = input('Enter a cardinal direction (n, e, s, w): ')
+
+    if user_input == 'n':
+        if hasattr(player1.current_room, 'n_to'):
+            player1.current_room = player1.current_room.n_to
+        else:
+            print('***Please try again.***')
+    elif user_input == 'e':
+        if hasattr(player1.current_room, 'e_to'):
+            player1.current_room = player1.current_room.e_to
+        else:
+            print('***Please try again.***')
+    elif user_input == 's':
+        if hasattr(player1.current_room, 's_to'):
+            player1.current_room = player1.current_room.s_to
+        else:
+            print('***Please try again.***')
+    elif user_input == 'w':
+        if hasattr(player1.current_room, 'w_to'):
+            player1.current_room = player1.current_room.s_to
+        else:
+            print('***Please try again.***')
+    elif user_input == 'q':
+        game_active = False
+    else:
+        print('Please enter a valid direction.')    
+    
+    # ITERATE THROUGH DIRECTIONS ATTEMPT
+
+    # for val in directions:
+    #     check_dir = exec(f'room[curr_room].{val}_to')
+
+    #     if user_input == val:
+    #         print('val matches')
+
+    #         if check_dir:
+    #             curr_player.current_room = check_dir
+    #         else:
+    #             print('***Please try again.***')
