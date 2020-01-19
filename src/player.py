@@ -4,6 +4,7 @@
 # Create player class
 class Player:
     # inst attributes
-    def __init__(self, current_room):
+    def __init__(self, current_room, inventory):
         # assign attributes to self
         self.current_room = current_room
+        self.inventory = inventory
